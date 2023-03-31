@@ -1342,6 +1342,13 @@ class Block_Controller(object):
         reward = self.reward_list[lines_cleared] * (1 + (self.height - max(0,max_height))/self.height_line_reward)
         ## 継続報酬
         #reward += 0.01
+        # 追加報酬 2023/01/30
+        if lines_cleared == 3:
+            reward += abs(reward/2)
+            print("3列追加報酬 reward = ", reward)
+        elif lines_cleared == 4:
+            reward += abs(reward)
+            print("4列追加報酬 reward = ", reward)
         #### 形状の罰報酬
         ## でこぼこ度罰
         reward -= self.reward_weight[0] * bampiness 
